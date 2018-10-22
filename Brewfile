@@ -41,6 +41,7 @@ brew 'wget'
 
 cask 'alfred'
 cask 'cheatsheet'
+cask 'chef/chef/chefdk'
 cask 'docker'
 cask 'firefox'
 cask 'google-chrome'
