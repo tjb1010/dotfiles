@@ -55,6 +55,7 @@ cask 'vagrant'
 cask 'vagrant-manager'
 cask 'virtualbox'
 cask 'visual-studio-code'
+cask 'font-hack-nerd-font'
 
 # Quicklook
 cask 'qlcolorcode'
