@@ -4,6 +4,92 @@ export ZSH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Code
 
+
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles
+
+# your project folder that we can `c [tab]` to
+export PROJECTS=~/Code
+
+POWERLEVEL9K_MODE="nerdfont-complete"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=7
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+plugins=(
+  brew common-aliases docker gitfast github node npm yarn osx web-search nvm zsh-syntax-highlighting
+)
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+#POWERLEVEL THEMING
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh custom_wifi_signal dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status node_version background_jobs history time)
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M %m.%d.%y}"
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_HIDE_BRANCH_ICON=false
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_NODE_VERSION_BACKGROUND='022'
+POWERLEVEL9K_OS_ICON_BACKGROUND="white"
+POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
+
+
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="gray"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="yellow"
+
+zsh_wifi_signal(){
+        local output=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I) 
+        local airport=$(echo $output | grep 'AirPort' | awk -F': ' '{print $2}')
+
+        if [ "$airport" = "Off" ]; then
+                local color='%F{yellow}'
+                echo -n "%{$color%}Wifi Off"
+        else
+                local ssid=$(echo $output | grep ' SSID' | awk -F': ' '{print $2}')
+                local speed=$(echo $output | grep 'lastTxRate' | awk -F': ' '{print $2}')
+                local color='%F{yellow}'
+
+                [[ $speed -gt 300 ]] && color='%F{green}'
+                [[ $speed -lt 100 ]] && color='%F{red}'
+
+                echo -n "%{$color%}\uF1EB $speed Mb/s%{%f%}" # removed char not in my PowerLine font 
+        fi
+}
+
+
+alias ls="colorls --dark --sort-dirs --report"
+alias lc="colorls --tree --dark"
+alias yarnclean="rm -rf node_modules/ && yarn install"
+alias npmclean="rm -rf node_modules/ && npm install"
+alias ohmyzsh="code ~/.oh-my-zsh"
+# Open .zshrc to be edited in VS Code
+alias change="code ~/.zshrc"
+# Re-run source command on .zshrc to update current terminal session with new settings
+alias update="source ~/.zshrc"
+
+
+
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
@@ -55,16 +141,92 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zshPOWERLEVEL9K_MODE='nerdfont-complete'
 
-# Load Nerd Fonts with Powerlevel9k theme for Zsh
-POWERLEVEL9K_MODE='nerdfont-complete'
-source ~/powerlevel9k/powerlevel9k.zsh-theme
-# Customise the Powerlevel9k prompts
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-# Load Zsh tools for syntax highlighting and autosuggestions
+
+
+# # Load Zsh tools for syntax highlighting and autosuggestions
 HOMEBREW_FOLDER="/usr/local/share"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source ~/powerlevel9k/powerlevel9k.zsh-theme
 
-alias ls='ls -G'
+# alias ls='ls -G'
+# alias java8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) && java -version"
+# alias java11="export JAVA_HOME=$(/usr/libexec/java_home -v 11) && java -version"
+
+# # Python / SAM
+# export PATH=$PATH:$USER_BASE_PATH/bin
+
+# # Java 8
+# if [ -d "/path/to/jdk" ] ; then
+#     export PATH="/path/to/jdk/bin:$PATH"
+# fi
+
+# # dotnet
+# export PATH="/usr/local/share:$PATH"
+
+
+
+# # Stash your environment variables in ~/.localrc. This means they'll stay out
+# # of your main dotfiles repository (which may be public, like this one), but
+# # you'll have access to them in your scripts.
+# if [[ -a ~/.localrc ]]
+# then
+#   source ~/.localrc
+# fi
+
+# # all of our zsh files
+# typeset -U config_files
+# config_files=($ZSH/**/*.zsh)
+
+# # load the path files
+# for file in ${(M)config_files:#*/path.zsh}
+# do
+#   source $file
+# done
+
+# # load everything but the path and completion files
+# for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+# do
+#   source $file
+# done
+
+# # initialize autocomplete here, otherwise functions won't be loaded
+# autoload -U compinit
+# compinit
+
+# # load every completion after autocomplete loads
+# for file in ${(M)config_files:#*/completion.zsh}
+# do
+#   source $file
+# done
+
+# unset config_files
+
+# # Better history
+# # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
+# autoload -U up-line-or-beginning-search
+# autoload -U down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# bindkey "^[[A" up-line-or-beginning-search # Up
+# bindkey "^[[B" down-line-or-beginning-search # Down
+# # tabtab source for serverless package
+# # uninstall by removing these lines or running `tabtab uninstall serverless`
+# [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# # tabtab source for sls package
+# # uninstall by removing these lines or running `tabtab uninstall sls`
+# [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zshPOWERLEVEL9K_MODE='nerdfont-complete'
+
+# # Load Nerd Fonts with Powerlevel9k theme for Zsh
+# POWERLEVEL9K_MODE='nerdfont-complete'
+# source ~/powerlevel9k/powerlevel9k.zsh-theme
+# # Customise the Powerlevel9k prompts
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# # Load Zsh tools for syntax highlighting and autosuggestions
+# HOMEBREW_FOLDER="/usr/local/share"
+# source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# alias ls='ls -G'

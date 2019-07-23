@@ -32,5 +32,10 @@
         # Setting to git 2.0 default to suppress warning message
         default = simple
 [user]
-	name = Tyler Bickford
+	name = tjb1010
 	email = bickford1010@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
