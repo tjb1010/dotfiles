@@ -4,7 +4,7 @@ export ZSH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Code
 
-
+export PATH=/usr/local/share/npm/bin:$PATH
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
@@ -26,7 +26,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
-  brew common-aliases docker gitfast github node npm yarn osx web-search nvm zsh-syntax-highlighting ng zsh-autosuggestions sdkman
+  brew common-aliases docker gitfast github node npm yarn osx web-search nvm zsh-syntax-highlighting ng zsh-autosuggestions sdkman serverless
 )
 
 # ssh
@@ -75,8 +75,8 @@ zsh_wifi_signal(){
 }
 
 
-alias ls="colorls --dark --sort-dirs --report"
-alias lc="colorls --tree --dark"
+alias ls="ls --dark --sort-dirs --report"
+alias lc="ls --tree --dark"
 alias yarnclean="rm -rf node_modules/ && yarn install"
 alias npmclean="rm -rf node_modules/ && npm install"
 alias ohmyzsh="code ~/.oh-my-zsh"
@@ -84,7 +84,9 @@ alias ohmyzsh="code ~/.oh-my-zsh"
 alias change="code ~/.zshrc"
 # Re-run source command on .zshrc to update current terminal session with new settings
 alias update="source ~/.zshrc"
-
+# Export all contact flows at once (requires conn.json edited to instance host name and lily token)
+alias getFlows='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getContactFlowsZip" > "flows.zip"'
+alias getFlowsDetails='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getAllResourcesDetailZip" > "flows.zip"'
 
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
@@ -131,12 +133,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zshPOWERLEVEL9K_MODE='nerdfont-complete'
 
 
 
@@ -146,84 +142,9 @@ source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source ~/.oh-my-zsh/custom/themes/powerlevel9k/powerlevel9k.zsh-theme
 
-# alias ls='ls -G'
-# alias java8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) && java -version"
-# alias java11="export JAVA_HOME=$(/usr/libexec/java_home -v 11) && java -version"
-
-# # Python / SAM
-# export PATH=$PATH:$USER_BASE_PATH/bin
-
-# # Java 8
-# if [ -d "/path/to/jdk" ] ; then
-#     export PATH="/path/to/jdk/bin:$PATH"
-# fi
-
-# # dotnet
-# export PATH="/usr/local/share:$PATH"
 
 
 
-# # Stash your environment variables in ~/.localrc. This means they'll stay out
-# # of your main dotfiles repository (which may be public, like this one), but
-# # you'll have access to them in your scripts.
-# if [[ -a ~/.localrc ]]
-# then
-#   source ~/.localrc
-# fi
 
-# # all of our zsh files
-# typeset -U config_files
-# config_files=($ZSH/**/*.zsh)
 
-# # load the path files
-# for file in ${(M)config_files:#*/path.zsh}
-# do
-#   source $file
-# done
 
-# # load everything but the path and completion files
-# for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-# do
-#   source $file
-# done
-
-# # initialize autocomplete here, otherwise functions won't be loaded
-# autoload -U compinit
-# compinit
-
-# # load every completion after autocomplete loads
-# for file in ${(M)config_files:#*/completion.zsh}
-# do
-#   source $file
-# done
-
-# unset config_files
-
-# # Better history
-# # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey "^[[A" up-line-or-beginning-search # Up
-# bindkey "^[[B" down-line-or-beginning-search # Down
-# # tabtab source for serverless package
-# # uninstall by removing these lines or running `tabtab uninstall serverless`
-# [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# # tabtab source for sls package
-# # uninstall by removing these lines or running `tabtab uninstall sls`
-# [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zshPOWERLEVEL9K_MODE='nerdfont-complete'
-
-# # Load Nerd Fonts with Powerlevel9k theme for Zsh
-# POWERLEVEL9K_MODE='nerdfont-complete'
-# source ~/powerlevel9k/powerlevel9k.zsh-theme
-# # Customise the Powerlevel9k prompts
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-# # Load Zsh tools for syntax highlighting and autosuggestions
-# HOMEBREW_FOLDER="/usr/local/share"
-# source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-# source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# alias ls='ls -G'
