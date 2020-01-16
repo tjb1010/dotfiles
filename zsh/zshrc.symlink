@@ -55,24 +55,24 @@ POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
 POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="gray"
 POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="yellow"
 
-zsh_wifi_signal(){
-        local output=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I) 
-        local airport=$(echo $output | grep 'AirPort' | awk -F': ' '{print $2}')
+_awsListAll() {
+    credentialFileLocation=${AWS_SHARED_CREDENTIALS_FILE};
+    if [ -z $credentialFileLocation ]; then
+        credentialFileLocation=~/.aws/credentials
+    fi
 
-        if [ "$airport" = "Off" ]; then
-                local color='%F{yellow}'
-                echo -n "%{$color%}Wifi Off"
-        else
-                local ssid=$(echo $output | grep ' SSID' | awk -F': ' '{print $2}')
-                local speed=$(echo $output | grep 'lastTxRate' | awk -F': ' '{print $2}')
-                local color='%F{yellow}'
+    while read line; do
+        if [[ $line == "["* ]]; then echo "$line"; fi;
+    done < $credentialFileLocation;
+};
 
-                [[ $speed -gt 300 ]] && color='%F{green}'
-                [[ $speed -lt 100 ]] && color='%F{red}'
-
-                echo -n "%{$color%}\uF1EB $speed Mb/s%{%f%}" # removed char not in my PowerLine font 
-        fi
-}
+_awsSwitchProfile() {
+  if [ -z $1 ]; then  echo "Usage: awsp profilename"; return; fi
+   
+  export AWS_DEFAULT_PROFILE=$1;
+  export AWS_PROFILE=$1;
+  echo "Switched to AWS Profile: $1";
+};
 
 
 alias ls="ls --dark --sort-dirs --report"
@@ -101,7 +101,10 @@ alias update="source ~/.zshrc"
 # Export all contact flows at once (requires conn.json edited to instance host name and lily token)
 alias getFlows='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getContactFlowsZip" > "flows.zip"'
 alias getFlowsDetails='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getAllResourcesDetailZip" > "flows.zip"'
-
+#list all aws profiles
+alias awsall="_awsListAll"
+#switch aws profile
+alias awsp="_awsSwitchProfile"
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
