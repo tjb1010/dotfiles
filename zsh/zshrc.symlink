@@ -26,15 +26,15 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
-  brew common-aliases docker gitfast github node npm yarn osx web-search nvm zsh-syntax-highlighting ng zsh-autosuggestions sdkman serverless
+  brew common-aliases docker gitfast github node npm yarn osx web-search nvm zsh-syntax-highlighting ng zsh-autosuggestions sdkman serverless aws
 )
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 #POWERLEVEL THEMING
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh custom_wifi_signal dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status node_version background_jobs history time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status node_version background_jobs time aws)
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M %m.%d.%y}"
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
@@ -76,10 +76,23 @@ zsh_wifi_signal(){
 
 
 alias ls="ls --dark --sort-dirs --report"
-alias lc="ls --tree --dark"
+alias ls.="ls -al"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias back="cd -"
+alias home="cd ~"
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias h='history'
+alias reboot='sudo /sbin/reboot'
+alias poweroff='sudo /sbin/poweroff'
+alias halt='sudo /sbin/halt'
+alias shutdown='sudo /sbin/shutdown'
 alias yarnclean="rm -rf node_modules/ && yarn install"
 alias npmclean="rm -rf node_modules/ && npm install"
-alias ohmyzsh="code ~/.oh-my-zsh"
+alias zsh="code ~/.oh-my-zsh"
 # Open .zshrc to be edited in VS Code
 alias change="code ~/.zshrc"
 # Re-run source command on .zshrc to update current terminal session with new settings
