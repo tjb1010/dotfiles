@@ -2,7 +2,7 @@ alias reload!='. ~/.zshrc'
 
 alias cls='clear' # Good 'ol Clear Screen command
 
-alias ls="ls --dark --sort-dirs --report"
+alias ls="ls -l"
 alias ls.="ls -al"
 alias ..="cd .."
 alias ...="cd ../.."
