@@ -8,6 +8,11 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
+#set up nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 POWERLEVEL9K_MODE="nerdfont-complete"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
@@ -34,7 +39,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 #POWERLEVEL THEMING
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status node_version background_jobs time aws)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status aws node_version background_jobs time)
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M %m.%d.%y}"
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
@@ -74,37 +79,6 @@ _awsSwitchProfile() {
   echo "Switched to AWS Profile: $1";
 };
 
-
-alias ls="ls --dark --sort-dirs --report"
-alias ls.="ls -al"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias back="cd -"
-alias home="cd ~"
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias h='history'
-alias please="sudo"
-alias reboot='sudo /sbin/reboot'
-alias poweroff='sudo /sbin/poweroff'
-alias halt='sudo /sbin/halt'
-alias shutdown='sudo /sbin/shutdown'
-alias yarnclean="rm -rf node_modules/ && yarn install"
-alias npmclean="rm -rf node_modules/ && npm install"
-alias zsh="code ~/.oh-my-zsh"
-# Open .zshrc to be edited in VS Code
-alias change="code ~/.zshrc"
-# Re-run source command on .zshrc to update current terminal session with new settings
-alias update="source ~/.zshrc"
-# Export all contact flows at once (requires conn.json edited to instance host name and lily token)
-alias getFlows='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getContactFlowsZip" > "flows.zip"'
-alias getFlowsDetails='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getAllResourcesDetailZip" > "flows.zip"'
-#list all aws profiles
-alias awsall="_awsListAll"
-#switch aws profile
-alias awsp="_awsSwitchProfile"
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
