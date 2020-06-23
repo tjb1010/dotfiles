@@ -1,9 +1,8 @@
 cask_args appdir: '/Applications'
 
-tap 'caskroom/cask'
 tap 'homebrew/bundle'
 tap 'puma/puma'
-tap 'caskroom/cask'
+tap 'homebrew/cask'
 
 # Install ZSH
 brew 'zsh'
@@ -12,6 +11,9 @@ brew 'zsh-completions'
 # Install Python
 brew 'python'
 brew 'pyenv'
+
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
 
 brew 'ack'
 # brew 'ask-cli'
@@ -39,8 +41,6 @@ cask 'discord'
 cask 'divvy'
 cask 'docker'
 cask 'firefox'
-cask 'firefox-developer-edition'
-cask 'font-hack-nerd-font'
 cask 'google-chrome'
 cask 'iterm2'
 cask 'karabiner-elements'
