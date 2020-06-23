@@ -19,7 +19,7 @@ alias poweroff='sudo /sbin/poweroff'
 alias halt='sudo /sbin/halt'
 alias shutdown='sudo /sbin/shutdown'
 alias yarnclean="rm -rf node_modules/ && yarn install"
-alias npmclean="rm -rf node_modules/ && npm install"
+alias npmclean="rm -rf node_modules/ && npm ci"
 alias zsh="code ~/.oh-my-zsh"
 # Open .zshrc to be edited in VS Code
 alias change="code ~/.zshrc"
