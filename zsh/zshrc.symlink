@@ -1,13 +1,22 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
+#Github user
+export GITHUB_ACTOR=tjb1010
+export ENVIRONMENT=tjb1010
+export AWS_PROFILE=default
+
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Code
 
 export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=/Users/tylerbickford/Code/go
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
+#set up code artifact registry
+export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain vf-team5 --domain-owner 333038793868 --query authorizationToken --output text`
 #set up nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -128,11 +137,11 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 
 # # Load Zsh tools for syntax highlighting and autosuggestions
-HOMEBREW_FOLDER="/usr/local/share"
-source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source ~/.oh-my-zsh/custom/themes/powerlevel9k/powerlevel9k.zsh-theme
+HOMEBREW_FOLDER=""
 
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/custom/themes/powerlevel9k/powerlevel9k.zsh-theme
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 

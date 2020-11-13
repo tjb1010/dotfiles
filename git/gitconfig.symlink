@@ -19,8 +19,10 @@
         editor = vim
 [apply]
         whitespace = nowarn
-[mergetool]
-        keepBackup = false
+[merge]
+        tool = vscode
+[mergetool "vscode"]
+        cmd = code --wait $MERGED
 [difftool]
         prompt = false
 [help]
@@ -39,3 +41,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[pull]
+	rebase = false
