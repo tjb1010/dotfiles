@@ -32,3 +32,5 @@ alias getFlowsDetails='curl -d "@conn.json" -H "Accept: application/zip" -X POST
 alias awsall="_awsListAll"
 #switch aws profile
 alias awsp="_awsSwitchProfile"
+#localstack aws cli commands
+alias awslocal="aws --endpoint-url=http://localhost:4566"

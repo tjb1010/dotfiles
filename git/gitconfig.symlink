@@ -15,7 +15,7 @@
         branch = auto
         ui = true
 [core]
-        excludesfile = ~/.gitignore
+	excludesfile = /Users/tylerbickford/.gitignore
         editor = vim
 [apply]
         whitespace = nowarn
@@ -34,8 +34,8 @@
         # Setting to git 2.0 default to suppress warning message
         default = simple
 [user]
-	name = tjb1010
-	email = bickford1010@gmail.com
+	name = Tyler Bickford
+	email = 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -43,3 +43,9 @@
 	required = true
 [pull]
 	rebase = false
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

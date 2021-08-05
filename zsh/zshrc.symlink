@@ -10,6 +10,7 @@ export AWS_PROFILE=default
 export PROJECTS=~/Code
 
 export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=/usr/local/share/python:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/Users/tylerbickford/Code/go
 # shortcut to this dotfiles path is $ZSH
@@ -88,6 +89,12 @@ _awsSwitchProfile() {
   echo "Switched to AWS Profile: $1";
 };
 
+# git add commit push "message"
+function gitacp() {
+    git add .
+    git commit -a -m "$1"
+    git push
+}
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
