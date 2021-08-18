@@ -54,7 +54,7 @@ cask 'signal'
 cask 'slack'
 cask 'spotify'
 cask 'visual-studio-code'
-cask 'zoomus'
+cask 'zoom'
 
 # Quicklook
 cask 'qlcolorcode'
