@@ -1,9 +1,16 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
 #Github user
-export GITHUB_ACTOR=tjb1010
-export ENVIRONMENT=tjb1010
+export GITHUB_ACTOR=tbickford
+export ENVIRONMENT=tbickford
 export AWS_PROFILE=default
 
 # your project folder that we can `c [tab]` to
@@ -13,11 +20,9 @@ export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=/usr/local/share/python:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/Users/tylerbickford/Code/go
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
 
 #set up code artifact registry
-export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain vf-team5 --domain-owner 333038793868 --query authorizationToken --output text`
+#export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain vf-team5 --domain-owner 333038793868 --query authorizationToken #--output text`
 #set up nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -146,12 +151,9 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 # # Load Zsh tools for syntax highlighting and autosuggestions
 HOMEBREW_FOLDER=""
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.oh-my-zsh/custom/themes/powerlevel9k/powerlevel9k.zsh-theme
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
-
-
-
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

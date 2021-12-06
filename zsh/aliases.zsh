@@ -25,9 +25,6 @@ alias zsh="code ~/.oh-my-zsh"
 alias change="code ~/.zshrc"
 # Re-run source command on .zshrc to update current terminal session with new settings
 alias update="source ~/.zshrc"
-# Export all contact flows at once (requires conn.json edited to instance host name and lily token)
-alias getFlows='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getContactFlowsZip" > "flows.zip"'
-alias getFlowsDetails='curl -d "@conn.json" -H "Accept: application/zip" -X POST "https://pz9zxz2zx8.execute-api.us-east-1.amazonaws.com/dev/getAllResourcesDetailZip" > "flows.zip"'
 #list all aws profiles
 alias awsall="_awsListAll"
 #switch aws profile
