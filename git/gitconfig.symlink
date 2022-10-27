@@ -15,7 +15,7 @@
         branch = auto
         ui = true
 [core]
-	excludesfile = /Users/tylerbickford/.gitignore
+	excludesfile = /Users/tbickford/.gitignore
         editor = vim
 [apply]
         whitespace = nowarn
@@ -49,3 +49,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[init]
+	defaultBranch = main

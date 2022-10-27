@@ -22,7 +22,7 @@ alias yarnclean="rm -rf node_modules/ && yarn install"
 alias npmclean="rm -rf node_modules/ && npm ci"
 alias zsh="code ~/.oh-my-zsh"
 # Open .zshrc to be edited in VS Code
-alias change="code ~/.zshrc"
+alias change="code ~/.dotfiles"
 # Re-run source command on .zshrc to update current terminal session with new settings
 alias update="source ~/.zshrc"
 #list all aws profiles
@@ -31,3 +31,4 @@ alias awsall="_awsListAll"
 alias awsp="_awsSwitchProfile"
 #localstack aws cli commands
 alias awslocal="aws --endpoint-url=http://localhost:4566"
+alias fix="echo 'eval \"$(/opt/homebrew/bin/brew shellenv)\"' && eval \"$(/opt/homebrew/bin/brew shellenv)\""

@@ -16,11 +16,6 @@ export AWS_PROFILE=default
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Code
 
-export PATH=/usr/local/share/npm/bin:$PATH
-export PATH=/usr/local/share/python:$PATH
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/Users/tylerbickford/Code/go
-
 #set up code artifact registry
 #export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain vf-team5 --domain-owner 333038793868 --query authorizationToken #--output text`
 #set up nvm
@@ -157,3 +152,6 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PNPM_HOME="/Users/tbickford/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
