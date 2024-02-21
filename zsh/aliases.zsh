@@ -32,3 +32,4 @@ alias awsp="_awsSwitchProfile"
 #localstack aws cli commands
 alias awslocal="aws --endpoint-url=http://localhost:4566"
 alias fix="echo 'eval \"$(/opt/homebrew/bin/brew shellenv)\"' && eval \"$(/opt/homebrew/bin/brew shellenv)\""
+alias s2a="function(){eval $( $(command saml2aws) script --shell=bash --profile=$@);}"
