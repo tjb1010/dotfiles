@@ -159,6 +159,12 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Fuzzy Find Everything - CTRL+R
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Forgit
+[ -f ~/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh ] && source ~/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 #__conda_setup="$('/Users/tbickford/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -173,3 +179,4 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 #fi
 #unset __conda_setup
 # <<< conda initialize <<<
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
