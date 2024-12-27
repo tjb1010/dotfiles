@@ -15,9 +15,9 @@ find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
 
 
 # Set default shell.
-echo "$(which zsh)" >> /etc/shells
+which zsh | sudo tee -a /etc/shells
 chsh -s $(which zsh)
 
 # Configure Hyper.
-ln -sf ~/.dotfiles/hyper/hyper.js ~/.hyper.js
-ln -sf ~/.dotfiles/hyper/hyper.css ~/.hyper.css
+# ln -sf ~/.dotfiles/hyper/hyper.js ~/.hyper.js
+# ln -sf ~/.dotfiles/hyper/hyper.css ~/.hyper.css
